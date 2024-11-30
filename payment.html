@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Payment Form Container */
+        .payment-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        /* Heading Styles */
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input Group Styles */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #f89cab;
+        }
+
+        /* Submit Button Styles */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #f89cab;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #db4f66;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4caf50;
+        }
+        
+        /* Error Message */
+        .error-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #f44336;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>Payment Details</h2>
+
+        <!-- Payment Form -->
+        <form id="payment-form">
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Enter your card number" required>
+            </div>
+
+            <div class="input-group">
+                <label for="expiry-date">Expiry Date (MM/YY)</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+            </div>
+
+            <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Make Payment</button>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" id="success-message">
+            Payment Successful! Thank you for your purchase.
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="error-message">
+            Please check the entered details and try again.
+        </div>
+    </div>
+
+    <script>
+        // Get form and message elements
+        const paymentForm = document.getElementById('payment-form');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+
+        // Form submission handler
+        paymentForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+
+            // Simple validation (you can expand this as per your needs)
+            if (name && cardNumber.length === 16 && expiryDate && cvv.length === 3) {
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+
+                // Optionally, you can redirect or perform further actions after success
+                // window.location.href = 'thank-you.html';  // Example: Redirect to a thank you page
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

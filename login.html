@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9ece6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Login/Signup Form Container */
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        /* Heading Styles */
+        h2 {
+            font-size: 30px;
+            color: #f89cab;
+            margin-bottom: 30px;
+        }
+
+        /* Input Group Styles */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #f89cab;
+        }
+
+        /* Button Styles */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #f89cab;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #db4f66;
+        }
+
+        /* Switch between Login and Signup */
+        .toggle-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .toggle-link a {
+            color: #f89cab;
+            text-decoration: none;
+        }
+
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styling for the signup page */
+        .signup-page {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Login/Signup Form Section -->
+    <div class="form-container">
+        <!-- Login Form -->
+        <form class="login-form" id="login-form">
+            <h2>Login</h2>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Login</button>
+
+            <p class="toggle-link">Don't have an account? <a href="javascript:void(0);" id="to-signup">Sign Up</a></p>
+        </form>
+
+        <!-- Signup Form -->
+        <form class="signup-form signup-page" id="signup-form">
+            <h2>Sign Up</h2>
+
+            <div class="input-group">
+                <label for="new-email">Email</label>
+                <input type="email" id="new-email" name="new-email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="new-password">Password</label>
+                <input type="password" id="new-password" name="new-password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Sign Up</button>
+
+            <p class="toggle-link">Already have an account? <a href="javascript:void(0);" id="to-login">Login</a></p>
+        </form>
+    </div>
+
+    <script>
+        // Toggling between Login and Signup forms
+        const toSignup = document.getElementById("to-signup");
+        const toLogin = document.getElementById("to-login");
+
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+
+        // Show signup form when the link is clicked
+        toSignup.addEventListener("click", function() {
+            loginForm.classList.add("signup-page");
+            signupForm.classList.remove("signup-page");
+        });
+
+        // Show login form when the link is clicked
+        toLogin.addEventListener("click", function() {
+            signupForm.classList.add("signup-page");
+            loginForm.classList.remove("signup-page");
+        });
+
+        // Handle login form submission and redirect to homepage
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the form from submitting the default way
+
+            // You can add your validation or authentication logic here, if needed
+            // For example, check if the email and password are correct
+
+            // If login is successful, redirect to the homepage
+            window.location.href = "index.html";  // Redirect to the homepage
+        });
+    </script>
+
+</body>
+</html>
